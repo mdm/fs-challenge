@@ -1,4 +1,4 @@
-CREATE TABLE data (
+CREATE TABLE items (
     id INTEGER AUTO_INCREMENT,
     city VARCHAR(255),
     start_date DATE,

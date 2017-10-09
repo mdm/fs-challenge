@@ -5,7 +5,7 @@ import re
 import decimal
 
 def write_records(sql_file, records):
-    head = """INSERT INTO data
+    head = """INSERT INTO items
 (id, city, start_date, end_date, price, status, color)
 VALUES
 """
