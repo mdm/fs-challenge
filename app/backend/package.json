@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mdm/fs-challenge#readme",
   "dependencies": {
     "express": "4.16.1",
+    "body-parser": "1.18.2",
     "mariasql": "0.2.6"
   },
   "devDependencies": {
