@@ -7,12 +7,19 @@ let rewire = require('rewire');
 let should = chai.should();
 chai.use(chaiHttp);
 
-// make app visible without exporting it
+process.env.NODE_ENV = 'test';
+
+// make app and db connection visible without exporting it
 let index = rewire('../index');
 let app = index.__get__('app'); 
 
+let db = require('../db');
+
 describe('API', () => {
-    before(() => {
+    beforeEach((done) => {
+        db.query('TRUNCATE test', () => {
+            done()
+        });
     });
 
     it('should create a new item and redirect', (done) => {

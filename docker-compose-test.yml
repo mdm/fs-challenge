@@ -25,15 +25,4 @@ services:
             - MYSQL_PASSWORD_FILE=/run/secrets/db_user_password
         depends_on:
             - helper
-    app:
-        build: ./app
-        ports:
-            - '3000:3000'
-        volumes:
-            - ./app:/app
-            - /app/backend/node_modules
-        secrets:
-            - db_user_password
-        depends_on:
-            - database
 
