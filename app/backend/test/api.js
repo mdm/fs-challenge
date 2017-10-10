@@ -29,7 +29,7 @@ describe('API', () => {
             end_date: '10/13/2017',
             price: '100.00',
             status: 'Once',
-            color: '#ff00000'
+            color: '#ff0000'
         };
 
         chai.request(app)
@@ -49,7 +49,7 @@ describe('API', () => {
             end_date: '10/13/2017',
             price: '100.00',
             status: 'Once',
-            color: '#ff00000'
+            color: '#ff0000'
         };
 
         chai.request(app)
@@ -59,7 +59,8 @@ describe('API', () => {
             res.should.have.status(400);
             res.body.should.be.a('object');
             res.body.should.have.property('errors');
-            res.body.errors.should.have.property('city');
+            res.body.errors.should.be.a('array');
+            res.body.errors.should.have.lengthOf(1);
             done();
         });
     });
@@ -93,7 +94,8 @@ describe('API', () => {
             res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('errors');
-            res.body.errors.should.have.property('item');
+            res.body.errors.should.be.a('array');
+            res.body.errors.should.have.lengthOf(1);
             done();
         });
     });
@@ -115,7 +117,8 @@ describe('API', () => {
             res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('errors');
-            res.body.errors.should.have.property('item');
+            res.body.errors.should.be.a('array');
+            res.body.errors.should.have.lengthOf(1);
             done();
         });
     });
@@ -137,7 +140,8 @@ describe('API', () => {
             res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('errors');
-            res.body.errors.should.have.property('item');
+            res.body.errors.should.be.a('array');
+            res.body.errors.should.have.lengthOf(1);
             done();
         });
     });
