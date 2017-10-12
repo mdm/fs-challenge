@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
             .send({ errors: ['Database error: ' + err.message] });
         } else {
             res.setHeader('location', '/api/items/' + db.lastInsertId());
-            res.sendStatus(200);
+            res.status(200).send({ success: true });
         }
     });
     db.end();
@@ -95,7 +95,7 @@ router.put('/:id', (req, res) => {
                 res.status(404)
                 .send({ errors: ['Item not found.'] });
             } else {
-                res.sendStatus(200);
+                res.status(200).send({ success: true });
             }
         }
     });
@@ -112,7 +112,7 @@ router.delete('/:id', (req, res) => {
                 res.status(404)
                 .send({ errors: ['Item not found.'] });
             } else {
-                res.sendStatus(200);
+                res.status(200).send({ success: true });
             }
         }
     });
