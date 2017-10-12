@@ -1,0 +1,12 @@
+All dependencies are installed via Docker and npm.
+If you have at least Docker 1.13.1+ und Docker Compose
+you should be able to run this app by running
+
+git clone https://github.com/mdm/fs-challenge.git
+cd fs-challenge
+docker-compose up
+
+When the containers are up the backend run on
+
+http://localhost:3000
+
