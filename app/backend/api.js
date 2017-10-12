@@ -16,9 +16,9 @@ router.post('/', (req, res) => {
         .send({ errors: errors });
         return;
     }
-    req.body.start_date = util.dateString2SQL(req.body.start_date);
-    req.body.end_date = util.dateString2SQL(req.body.end_date);
-    req.body.price = util.priceString2Integer(req.body.price);
+    req.body.start_date = util.dateString2sql(req.body.start_date);
+    req.body.end_date = util.dateString2sql(req.body.end_date);
+    req.body.price = util.priceString2integer(req.body.price);
     db.query('INSERT INTO items (city, start_date, end_date, price, status, color) VALUES (:city, :start_date, :end_date, :price, :status, :color)',
         req.body,
         (err) => {
@@ -39,6 +39,12 @@ router.get('/', (req, res) => {
             res.status(500)
             .send({ errors: ['Database error: ' + err.message] });
         } else {
+            results = results.map((result) => {
+                result.start_date = util.sql2dateString(result.start_date);
+                result.end_date = util.sql2dateString(result.end_date);
+                result.price = util.integer2price(result.price);
+                return result;
+            });
             res.status(200)
             .send(results);
         }
@@ -56,8 +62,12 @@ router.get('/:id', (req, res) => {
                 res.status(404)
                 .send({ errors: ['Item not found.'] });
             } else {
+                let result = results[0];
+                result.start_date = util.sql2dateString(result.start_date);
+                result.end_date = util.sql2dateString(result.end_date);
+                result.price = util.integer2price(result.price);
                 res.status(200)
-                .send(results[0]);
+                .send(result);
             }
         }
     });
@@ -71,9 +81,9 @@ router.put('/:id', (req, res) => {
         .send({ errors: errors });
         return;
     }
-    req.body.start_date = util.dateString2SQL(req.body.start_date);
-    req.body.end_date = util.dateString2SQL(req.body.end_date);
-    req.body.price = util.priceString2Integer(req.body.price);
+    req.body.start_date = util.dateString2sql(req.body.start_date);
+    req.body.end_date = util.dateString2sql(req.body.end_date);
+    req.body.price = util.priceString2integer(req.body.price);
     req.body.id = req.params.id;
     db.query('UPDATE items SET city = :city, start_date = :start_date, end_date = :end_date, price = :price, status = :status, color = :color WHERE id = :id', req.body, (err, results) => {
         if(err) {
