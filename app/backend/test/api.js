@@ -17,9 +17,15 @@ let db = require('../db');
 
 describe('/api', () => {
     beforeEach((done) => {
-        db.query('TRUNCATE test', () => {
-            done()
+        db.query('TRUNCATE items', () => {
+            db.query("INSERT INTO items (id, city, start_date, end_date, price, status, color) VALUES \
+                      (1, 'Köln', '2017-01-01', '2017-01-31', 10000, 'Daily', '#ff0000'), \
+                      (2, 'Bonn', '2016-01-01', '2016-12-31', 9999, 'Yearly', '#00ff00'), \
+                      (3, 'Düsseldorf', '2018-01-01', '2018-11-11', 1234, 'Daily', '#0000ff')", (err) => {
+                done();
+            });
         });
+        db.end();
     });
 
     describe('POST /items', () => {
