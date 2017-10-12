@@ -1,0 +1,11 @@
+th {
+    color: white;
+    background-color: navy;
+    width: 10em;
+    text-align: left;
+    padding: 5px;
+}
+
+th:first-child {
+    width: 20em;
+}
