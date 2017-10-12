@@ -10,7 +10,7 @@ if(process.env.NODE_ENV === 'test') {
         db: 'test'
     });
 } else {
-    let secret = fs.readFileSync('/run/secrets/db_user_password', { encoding: 'utf8' });
+    let secret = fs.readFileSync('/run/secrets/db_user_password', { encoding: 'utf8' }).trim();
     db = new DBClient({
         host: 'database',
         user: 'challenge',
