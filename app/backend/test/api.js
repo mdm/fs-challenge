@@ -1,7 +1,6 @@
 let mocha = require('mocha');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let sinon = require('sinon');
 let rewire = require('rewire');
 
 let should = chai.should();
